@@ -16,6 +16,7 @@ public:
     void rajz(bool focus);
     void valt(event ev);
     bool focus(event ev);
+    ~Vezerlo(){}
 };
 
 #endif // VEZERLO_HPP_INCLUDED

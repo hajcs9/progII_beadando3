@@ -51,6 +51,8 @@
 			<Add library="dxguid" />
 			<Add directory="lib" />
 		</Linker>
+		<Unit filename="kezdogomb.cpp" />
+		<Unit filename="kezdogomb.hpp" />
 		<Unit filename="kocka.cpp" />
 		<Unit filename="kocka.hpp" />
 		<Unit filename="main.cpp" />

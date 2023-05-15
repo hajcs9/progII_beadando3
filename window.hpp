@@ -13,9 +13,9 @@ class Window
     std::vector<Widget *> widgets;
 public:
     Window(int x,int y);
-    virtual ~Window(){}
     void loop();
     void addwidget(Widget* w) {widgets.push_back(w);}
+    virtual ~Window(){}
 };
 
 #endif // WINDOW_HPP_INCLUDED

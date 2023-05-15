@@ -1,5 +1,6 @@
 #include "graphics.hpp"
 #include "widgets.hpp"
+#include "kezdogomb.hpp"
 #include "kocka.hpp"
 
 int jatekos=1;
@@ -37,14 +38,22 @@ bool Kocka::focus(event ev)
 
 void Kocka::valt(event ev)
 {
-    if(hitbox(x,x+a,y,y+a,ev) && ev.button == btn_left && ovx == -1 && jatekos == 1)
+    if(leker_kezd())
     {
-        ovx = 1;
-        jatekos = 0;
+        if(hitbox(x,x+a,y,y+a,ev) && ev.button == btn_left && ovx == -1 && jatekos == 1)
+        {
+            ovx = 1;
+            jatekos = 0;
+        }
+        else if(hitbox(x+b,x+a-b,y+b,y+a-b,ev) && ev.button == btn_left && ovx == -1 && jatekos == 0)
+        {
+            ovx = 0;
+            jatekos = 1;
+        }
     }
-    else if(hitbox(x+b,x+a-b,y+b,y+a-b,ev) && ev.button == btn_left && ovx == -1 && jatekos == 0)
+    else
     {
-        ovx = 0;
-        jatekos = 1;
+        ovx=-1;
+        jatekos=1;
     }
 }

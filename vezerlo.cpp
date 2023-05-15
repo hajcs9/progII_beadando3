@@ -2,6 +2,7 @@
 #include "widgets.hpp"
 #include "kocka.hpp"
 #include "vezerlo.hpp"
+#include "kezdogomb.hpp"
 
 #include <iostream>
 #include <vector>
@@ -66,40 +67,60 @@ void osszekotott(size_t sor, size_t oszlop, int eltol_s, int eltol_o, vector<vec
 
 void Vezerlo::valt(event ev)
 {
-    vector<int> counter_O = {-1,-1,-1,-1};
-    vector<int> counter_X = {-1,-1,-1,-1};
-    int l=0;
-    for(size_t i=0;i<k.size();i++)
+    if(leker_kezd() && win()==-1)
     {
-        for(size_t j=0;j<k[i].size();j++)
+        vector<int> counter_O = {-1,-1,-1,-1};
+        vector<int> counter_X = {-1,-1,-1,-1};
+        int l=0;
+        int betelt=0;
+        for(size_t i=0;i<k.size();i++)
         {
-            k[i][j]->valt(ev);
-            if(k[i][j]->kie()>-1 && k[i][j]->focus(ev))
-                {
-                    //sor
-                    osszekotott(i,j,0,5,k,counter_O[l],0);
-                    osszekotott(i,j,0,5,k,counter_X[l],1);
-                    l++;
-                    //oszlop
-                    osszekotott(i,j,5,0,k,counter_O[l],0);
-                    osszekotott(i,j,5,0,k,counter_X[l],1);
-                    l++;
-                    //atlos1
-                    osszekotott(i,j,5,5,k,counter_O[l],0);
-                    osszekotott(i,j,5,5,k,counter_X[l],1);
-                    l++;
-                    //atlos2
-                    osszekotott(i,j,5,-5,k,counter_O[l],0);
-                    osszekotott(i,j,5,-5,k,counter_X[l],1);
-                    //reset
-                    for(int n=0;n<4;n++)
+            for(size_t j=0;j<k[i].size();j++)
+            {
+                k[i][j]->valt(ev);
+                if(k[i][j]->kie()>-1 && k[i][j]->focus(ev))
                     {
-                        if(counter_O[n] > 4) {victor=0;}
-                        else if(counter_X[n] > 4) {victor=1;}
+                        //sor
+                        osszekotott(i,j,0,5,k,counter_O[l],0);
+                        osszekotott(i,j,0,5,k,counter_X[l],1);
+                        l++;
+                        //oszlop
+                        osszekotott(i,j,5,0,k,counter_O[l],0);
+                        osszekotott(i,j,5,0,k,counter_X[l],1);
+                        l++;
+                        //atlos1
+                        osszekotott(i,j,5,5,k,counter_O[l],0);
+                        osszekotott(i,j,5,5,k,counter_X[l],1);
+                        l++;
+                        //atlos2
+                        osszekotott(i,j,5,-5,k,counter_O[l],0);
+                        osszekotott(i,j,5,-5,k,counter_X[l],1);
+                        //reset
+                        for(int n=0;n<4;n++)
+                        {
+                            if(counter_O[n] > 4) {victor=0;}
+                            else if(counter_X[n] > 4) {victor=1;}
+                        }
+                        counter_O={-1,-1,-1,-1};
+                        counter_X={-1,-1,-1,-1};
                     }
-                    counter_O={-1,-1,-1,-1};
-                    counter_X={-1,-1,-1,-1};
-                }
+                    if(k[i][j]->kie()==-1)betelt++;
+            }
+        }
+        if(betelt == 0)
+        {
+            victor = 2;
+        }
+    }
+    else if(!leker_kezd())
+    {
+        victor=-1;
+        for(size_t i=0;i<k.size();i++)
+        {
+            for(size_t j=0;j<k[i].size();j++)
+            {
+                k[i][j]->valt(ev);
+            }
         }
     }
 }
