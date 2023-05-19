@@ -4,7 +4,6 @@
 #include "kocka.hpp"
 
 int jatekos=1;
-
 int jtks()
 {
     return jatekos;
@@ -13,7 +12,7 @@ int jtks()
 const int a=25;
 const int b=1;
 
-Kocka::Kocka(int px, int py): x(px), y(py){ovx=-1;}
+Kocka::Kocka(Window* w,int px, int py): Widget(w,px,py){ovx=-1;}
 void Kocka::rajz(bool focus)
 {
     int bl=150;
@@ -24,9 +23,9 @@ void Kocka::rajz(bool focus)
     {
         gout << move_to(x+b*3,y-a/a) << color(0,0,0+bl) << text("O");
     }
-    if(ovx == 1)
+    else if(ovx == 1)
     {
-        gout << move_to(x+a/5,y-a/a) << color(0+bl,0,0) << text("X");
+        gout << move_to(x+a/(a/5),y-a/a) << color(0+bl,0,0) << text("X");
     }
 }
 

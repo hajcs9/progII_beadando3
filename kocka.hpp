@@ -2,15 +2,15 @@
 #define KOCKA_HPP_INCLUDED
 
 #include "graphics.hpp"
+#include "widgets.hpp"
 
 int jtks();
 
-class Kocka
+class Kocka : public Widget
 {
-    int x,y;
     int ovx=-1;
 public:
-    Kocka(int px, int py);
+    Kocka(Window* w,int px, int py);
     void rajz(bool focus);
     void valt(event ev);
     bool focus(event ev);

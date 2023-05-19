@@ -13,9 +13,9 @@ class Vezerlo : public Widget
     std::vector<std::vector<Kocka *>> k;
 public:
     Vezerlo(Window* w, int px, int py, std::vector<std::vector<Kocka *>> kocka);
-    void rajz(bool focus);
+    void rajz(bool focus){};
     void valt(event ev);
-    bool focus(event ev);
+    bool focus(event ev){return false;};
     ~Vezerlo(){}
 };
 

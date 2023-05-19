@@ -30,7 +30,7 @@ struct Ablak : public Window
         {
             for(size_t j=0;j<15;j++)
             {
-                kocka_s.push_back(new Kocka(100*scaleX+j*25*scaleX,100*scaleY+i*25*scaleY));
+                kocka_s.push_back(new Kocka(this,100*scaleX+j*25*scaleX,100*scaleY+i*25*scaleY));
             }
             kocka_o.push_back(kocka_s);
             kocka_s.clear();

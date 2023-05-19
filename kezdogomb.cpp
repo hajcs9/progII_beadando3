@@ -28,12 +28,12 @@ bool Kezdogomb::focus(event ev)
 
 void Kezdogomb::valt(event ev)
 {
-    if(hitbox(x,x+100,y,y+50,ev) && ev.button == btn_left && elkezd == false && win()==-1)
+    if(((hitbox(x,x+100,y,y+50,ev) && ev.button == btn_left) || ev.keycode == key_enter) && elkezd == false && win()==-1)
     {
         elkezd = true;
         kiir = "Vissza";
     }
-    if(hitbox(x,x+100,y,y+50,ev) && ev.button == btn_left && elkezd == true && win()>-1)
+    if(((hitbox(x,x+100,y,y+50,ev) && ev.button == btn_left) || ev.keycode == key_enter)  && elkezd == true && win()>-1)
     {
         elkezd = false;
         kiir="Kezdes";
