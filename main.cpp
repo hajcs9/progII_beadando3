@@ -15,8 +15,6 @@ using namespace std;
 
 const int SX = 600;
 const int SY = 600;
-const double scaleX = (double)SX/600;
-const double scaleY = (double)SY/600;
 
 struct Ablak : public Window
 {
@@ -30,13 +28,13 @@ struct Ablak : public Window
         {
             for(size_t j=0;j<15;j++)
             {
-                kocka_s.push_back(new Kocka(this,100*scaleX+j*25*scaleX,100*scaleY+i*25*scaleY));
+                kocka_s.push_back(new Kocka(this,100+j*25,100+i*25));
             }
             kocka_o.push_back(kocka_s);
             kocka_s.clear();
         }
-        kezd = new Kezdogomb(this,SX/2-50*scaleX,SY-100*scaleY);
-        v = new Vezerlo(this,100*scaleX,100*scaleY,kocka_o);
+        kezd = new Kezdogomb(this,SX/2-50,SY-100);
+        v = new Vezerlo(this,100,100,kocka_o);
     }
 };
 
